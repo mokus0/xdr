@@ -1,18 +1,24 @@
 name:                   xdr
-version:                0.0.0.1
+version:                0.1
 stability:              experimental
 
 cabal-version:          >= 1.2
 build-type:             Simple
 
-author:                 James Cook <your email here>
-maintainer:             James Cook <your email here>
-license:                Unspecified
+author:                 James Cook <james.cook@usma.edu>
+maintainer:             James Cook <james.cook@usma.edu>
+license:                PublicDomain
 homepage:               /dev/null
 
-category:               Unclassified
-synopsis:               I'm too lame to describe my project
-description:            I'm too lame to describe my project
+category:               Serialization
+synopsis:               XDR (eXternal Data Representation)
+description:            XDR (eXternal Data Representation) is a simple
+                        standardized language for describing binary data
+                        encodings.  This library provides an implementation
+                        of the data model and encoding/decoding functions.
+                        In future releases it may also include a parser and
+                        quasiquoter for the schema language.
+                        
 
 Library
   hs-source-dirs:       src

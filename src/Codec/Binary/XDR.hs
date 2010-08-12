@@ -1,12 +1,5 @@
-module Codec.Binary.XDR
-    ( module Codec.Binary.XDR
-    , module Codec.Binary.XDR.Get
-    , module Codec.Binary.XDR.Put
-    , module Codec.Binary.XDR.Format
-    ) where
+module Codec.Binary.XDR where
 
-import Codec.Binary.XDR.Get
-import Codec.Binary.XDR.Put
 import Codec.Binary.XDR.Format
 
 import Data.Binary
