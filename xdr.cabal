@@ -19,7 +19,8 @@ Library
   exposed-modules:      Codec.Binary.XDR
                         Codec.Binary.XDR.Get
                         Codec.Binary.XDR.Put
-  build-depends:        base >= 3, 
+                        Codec.Binary.XDR.Format
+  build-depends:        base >= 3 && < 5, 
                         binary, 
                         bytestring,
                         bytestring-class,
