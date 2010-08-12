@@ -8,7 +8,7 @@ build-type:             Simple
 author:                 James Cook <james.cook@usma.edu>
 maintainer:             James Cook <james.cook@usma.edu>
 license:                PublicDomain
-homepage:               /dev/null
+homepage:               http://code.haskell.org/~mokus/xdr
 
 category:               Serialization
 synopsis:               XDR (eXternal Data Representation)
@@ -18,7 +18,6 @@ description:            XDR (eXternal Data Representation) is a simple
                         of the data model and encoding/decoding functions.
                         In future releases it may also include a parser and
                         quasiquoter for the schema language.
-                        
 
 Library
   hs-source-dirs:       src
