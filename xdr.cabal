@@ -1,0 +1,26 @@
+name:                   xdr
+version:                0.0.0.1
+stability:              experimental
+
+cabal-version:          >= 1.2
+build-type:             Simple
+
+author:                 James Cook <your email here>
+maintainer:             James Cook <your email here>
+license:                Unspecified
+homepage:               /dev/null
+
+category:               Unclassified
+synopsis:               I'm too lame to describe my project
+description:            I'm too lame to describe my project
+
+Library
+  hs-source-dirs:       src
+  exposed-modules:      Codec.Binary.XDR
+                        Codec.Binary.XDR.Get
+                        Codec.Binary.XDR.Put
+  build-depends:        base >= 3, 
+                        binary, 
+                        bytestring,
+                        bytestring-class,
+                        data-binary-ieee754
