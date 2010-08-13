@@ -11,7 +11,7 @@ import qualified Data.ByteString.Lazy.Char8 as BL
 xdr :: QuasiQuoter
 xdr = QuasiQuoter qExp qPat
     where
-        qPat _ = fail "fmt quasiquoter is only usable in expression contexts"
+        qPat _ = fail "xdr quasiquoter is only usable in expression contexts"
         qExp xdr = case parseXDR declaration (BL.pack xdr) of
             Left err -> tryTypeSpec xdr
             Right dec -> declarationToFmt emptyEnv dec
