@@ -25,8 +25,20 @@ Library
                         Codec.Binary.XDR.Get
                         Codec.Binary.XDR.Put
                         Codec.Binary.XDR.Format
+                        Language.XDR
+
+  other-modules:        Language.XDR.Lexer
+                        Language.XDR.ParseMonad
+                        Language.XDR.Parser
+                        Language.XDR.Pretty
+                        Language.XDR.Syntax
+                        
   build-depends:        base >= 3 && < 5, 
+                        array,
                         binary, 
                         bytestring,
                         bytestring-class,
-                        data-binary-ieee754
+                        data-binary-ieee754,
+                        monad-loops,
+                        pretty,
+                        prettyclass
