@@ -18,10 +18,11 @@ description:            XDR (eXternal Data Representation) is a simple
                         of the data model and encoding/decoding functions, as
                         well as a parser and pretty-printer for the language.
                         
-                        In future releases it may also include a quasiquoter
-                        and template-haskell declaration generator to allow
-                        encodeable formats to be specified by including XDR
-                        code directly in Haskell sources.
+                        There is also a very rudimentary quasiquoter which 
+                        allows declaration of simple XDR formats inline in 
+                        Haskell code.  This feature will likely be expanded
+                        later, but the current interface is simple enough
+                        that any future work will be a proper extension of it.
 
 Library
   hs-source-dirs:       src
@@ -29,7 +30,9 @@ Library
                         Codec.Binary.XDR.Get
                         Codec.Binary.XDR.Put
                         Codec.Binary.XDR.Format
+                        Codec.Binary.XDR.Format.QQ
                         Language.XDR
+                        Language.XDR.TH
 
   other-modules:        Language.XDR.Lexer
                         Language.XDR.ParseMonad
@@ -45,4 +48,5 @@ Library
                         data-binary-ieee754,
                         monad-loops,
                         pretty,
-                        prettyclass
+                        prettyclass,
+                        template-haskell
