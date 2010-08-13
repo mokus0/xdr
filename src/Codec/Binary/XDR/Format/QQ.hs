@@ -7,6 +7,7 @@ import qualified Data.ByteString.Lazy.Char8 as BL
 
 -- |Very rudimentary quasiquoter for XDR formats.  Returns a 'Fmt' given an
 -- XDR declaration or type-specifier.  Does not support typedefs or const definitions.
+-- Currently does not support enums, structs or unions either.
 xdr :: QuasiQuoter
 xdr = QuasiQuoter qExp qPat
     where
