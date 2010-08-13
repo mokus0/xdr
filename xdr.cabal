@@ -15,9 +15,13 @@ synopsis:               XDR (eXternal Data Representation)
 description:            XDR (eXternal Data Representation) is a simple
                         standardized language for describing binary data
                         encodings.  This library provides an implementation
-                        of the data model and encoding/decoding functions.
-                        In future releases it may also include a parser and
-                        quasiquoter for the schema language.
+                        of the data model and encoding/decoding functions, as
+                        well as a parser and pretty-printer for the language.
+                        
+                        In future releases it may also include a quasiquoter
+                        and template-haskell declaration generator to allow
+                        encodeable formats to be specified by including XDR
+                        code directly in Haskell sources.
 
 Library
   hs-source-dirs:       src
