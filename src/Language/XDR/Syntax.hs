@@ -8,8 +8,9 @@ type Constant   = Integer
 type Identifier = ByteString
 
 data Multiplicity
-    = Fixed Value
-    | Variable (Maybe Value)
+    = Fixed   Value
+    | Bounded Value
+    | Unbounded
     deriving (Eq, Show)
 
 data Declaration

@@ -11,13 +11,14 @@ import Text.PrettyPrint.HughesPJClass
 blText = text . BL.unpack
 
 instance Pretty Multiplicity where
-    pPrint (Fixed val) = brackets (pPrint val)
-    pPrint (Variable val) = cat [char '<', maybe space pPrint val, char '>']
+    pPrint (Fixed   val) = brackets (pPrint val)
+    pPrint (Bounded val) = cat [char '<', pPrint val, char '>']
+    pPrint Unbounded     = cat [char '<', space,      char '>']
 
 instance Pretty Declaration where
     pPrint (BasicDec    typeSpec ident mult) = sep [pPrint typeSpec, blText ident, maybe empty pPrint mult]
     pPrint (OpaqueDec            ident mult) = sep [text "opaque",   blText ident, pPrint mult]
-    pPrint (StringDec            ident mult) = sep [text "string",   blText ident, pPrint (Variable mult)]
+    pPrint (StringDec            ident mult) = sep [text "string",   blText ident, pPrint (maybe Unbounded Bounded mult)]
     pPrint (OptionalDec typeSpec ident)      = sep [pPrint typeSpec, char '*',     blText ident]
     pPrint VoidDec = text "void"
 

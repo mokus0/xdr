@@ -88,7 +88,8 @@ declaration :: { Syn.Declaration }
 
 multiplicity :: { Syn.Multiplicity }
     : '[' value ']'                                     { Syn.Fixed    $2 }
-    | '<' opt(value) '>'                                { Syn.Variable $2 }
+    | '<' value '>'                                     { Syn.Bounded  $2 }
+    | '<'       '>'                                     { Syn.Unbounded   }
 
 value :: { Syn.Value }
     : constant                                          { Syn.Lit $1 }

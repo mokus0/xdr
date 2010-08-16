@@ -122,13 +122,13 @@ nameE name@(c:_)
 declarationToFmt :: THEnv Exp -> Env -> Declaration -> Q Exp
 declarationToFmt thEnv env (BasicDec typeSpec ident mult) = case mult of
     Nothing -> typeSpecToFmt thEnv env typeSpec
-    Just (Fixed val)            -> [| ArrayF $(typeSpecToFmt thEnv env typeSpec) $(getVal thEnv env val)        |]
-    Just (Variable Nothing)     -> [| ArrayV $(typeSpecToFmt thEnv env typeSpec) Nothing                        |]
-    Just (Variable (Just val))  -> [| ArrayV $(typeSpecToFmt thEnv env typeSpec) (Just $(getVal thEnv env val)) |]
+    Just (Fixed   val)  -> [| ArrayF $(typeSpecToFmt thEnv env typeSpec) $(getVal thEnv env val)        |]
+    Just (Bounded val)  -> [| ArrayV $(typeSpecToFmt thEnv env typeSpec) (Just $(getVal thEnv env val)) |]
+    Just Unbounded      -> [| ArrayV $(typeSpecToFmt thEnv env typeSpec) Nothing                        |]
 declarationToFmt thEnv env (OpaqueDec ident mult) = case mult of
-    Fixed val           -> [| OpaqueF $(getVal thEnv env val)        |]
-    Variable Nothing    -> [| OpaqueV Nothing                        |]
-    Variable (Just val) -> [| OpaqueV (Just $(getVal thEnv env val)) |]
+    Fixed   val -> [| OpaqueF $(getVal thEnv env val)        |]
+    Bounded val -> [| OpaqueV (Just $(getVal thEnv env val)) |]
+    Unbounded   -> [| OpaqueV Nothing                        |]
 declarationToFmt thEnv env (StringDec ident mult) = case mult of
     Nothing    -> [| String Nothing                        |]
     (Just val) -> [| String (Just $(getVal thEnv env val)) |]
