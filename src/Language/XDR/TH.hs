@@ -16,7 +16,7 @@ import Text.PrettyPrint.HughesPJClass
 
 -- WARNING!!!
 -- This is a big ugly ball of code.  Do not read if you value your sanity!
--- For preference, read just enough of it to understand what it's _supposed_ to
+-- For preference, read just enough of it to understand what it's _trying_ to
 -- do, come up with a better idea of what it _should_ do, and implement _that_
 -- from scratch.
 
