@@ -149,10 +149,10 @@ action_15 (53) = happyShift action_46
 action_15 (16) = happyGoto action_45
 action_15 _ = happyFail
 
-action_16 (1) = happyAccept
+action_16 (71) = happyAccept
 action_16 _ = happyFail
 
-action_17 (1) = happyAccept
+action_17 (71) = happyAccept
 action_17 _ = happyFail
 
 action_18 (39) = happyShift action_43
@@ -171,7 +171,7 @@ action_22 _ = happyReduce_37
 
 action_23 _ = happyReduce_36
 
-action_24 (1) = happyAccept
+action_24 (71) = happyAccept
 action_24 _ = happyFail
 
 action_25 (39) = happyShift action_40

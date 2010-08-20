@@ -16,9 +16,9 @@ import Data.Maybe (isJust)
 }
 
 %name xdr specification
-%partial definition definition
-%partial declaration declaration
-%partial type_specifier type_specifier
+%name definition definition
+%name declaration declaration
+%name type_specifier type_specifier
 
 %tokentype { Lex.Token }
 %monad { ParseXDR }
