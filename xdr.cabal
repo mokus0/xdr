@@ -2,13 +2,13 @@ name:                   xdr
 version:                0.1
 stability:              experimental
 
-cabal-version:          >= 1.2
+cabal-version:          >= 1.6
 build-type:             Simple
 
-author:                 James Cook <james.cook@usma.edu>
-maintainer:             James Cook <james.cook@usma.edu>
+author:                 James Cook <mokus@deepbondi.net>
+maintainer:             James Cook <mokus@deepbondi.net>
 license:                PublicDomain
-homepage:               http://code.haskell.org/~mokus/xdr
+homepage:               https://github.com/mokus0/xdr
 
 category:               Serialization
 synopsis:               XDR (eXternal Data Representation)
@@ -23,6 +23,10 @@ description:            XDR (eXternal Data Representation) is a simple
                         Haskell code.  This feature will likely be expanded
                         later, but the current interface is simple enough
                         that any future work will be a proper extension of it.
+
+source-repository head
+  type:                 git
+  location:             https://github.com/mokus0/xdr.git
 
 Library
   hs-source-dirs:       src
