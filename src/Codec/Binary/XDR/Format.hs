@@ -1,6 +1,7 @@
 {-# LANGUAGE GADTs #-}
 module Codec.Binary.XDR.Format
     ( Fmt(..), Struct(..), Union(..)
+    , encodeFmt, decodeFmt
     , getFmt, putFmt
     ) where
 
@@ -9,9 +10,17 @@ import Codec.Binary.XDR.Put
 
 import Control.Monad
 import Data.Binary
+import Data.Binary.Get (runGet)
+import Data.Binary.Put (runPut)
 import Data.ByteString.Lazy
 import Data.Int
 import Data.Word
+
+encodeFmt :: Fmt a -> a -> ByteString
+encodeFmt fmt = runPut . putFmt fmt
+
+decodeFmt :: Fmt a -> ByteString -> a
+decodeFmt = runGet . getFmt
 
 data Fmt a where
     Void    :: Fmt ()

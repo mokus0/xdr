@@ -1,13 +1,25 @@
-module Codec.Binary.XDR where
+module Codec.Binary.XDR
+    ( XDR(..)
+    , encodeXDR, decodeXDR
+    , getXDR, putXDR
+    , module Codec.Binary.XDR.Format
+    ) where
 
 import Codec.Binary.XDR.Format
 
 import Data.Binary
+import Data.ByteString.Lazy
 import Data.Int
 import Data.Word
 
 class XDR a where
     format :: Fmt a
+
+encodeXDR :: XDR a => a -> ByteString
+encodeXDR = encodeFmt format
+
+decodeXDR :: XDR a => ByteString -> a
+decodeXDR = decodeFmt format
 
 putXDR :: XDR a => a -> Put
 putXDR = putFmt format

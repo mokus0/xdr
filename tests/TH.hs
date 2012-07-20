@@ -1,23 +1,24 @@
 {-# LANGUAGE TemplateHaskell, QuasiQuotes #-}
 -- |Simple test module that should compile and yield the following signature
--- (or some specialization thereof, depending on the compiler's exact type 
--- inference algorithm):
+-- or something equivalent.
 -- 
--- enc :: Fmt a -> a -> Data.ByteString.Lazy.Internal.ByteString
--- dec :: Fmt a -> Data.ByteString.Lazy.Internal.ByteString -> a
 -- data Boolean = FALSE | TRUE | FILENOTFOUND
--- answer :: (Num t) => t
--- random :: (Num t) => t
+-- answer :: Num a => a
+-- random :: Num a => a
 -- boolean :: Fmt Boolean
 -- booleans :: Fmt [Boolean]
--- fileNotFound :: (Num t) => t
+-- fileNotFound :: Num a => a
 -- randomBooleans :: Fmt [Boolean]
+-- state :: Fmt String
 -- blah :: Fmt String
 -- blahs :: Fmt [String]
+-- hungry :: String
+-- full :: String
+-- achoo :: Fmt Int64
+-- numBlahs :: Num a => a
 -- foo :: String
 -- bar :: String
 -- qux :: String
--- numBlahs :: (Num t) => t
 module TH where
 
 import Data.Binary.Get (runGet)
@@ -26,11 +27,6 @@ import Codec.Binary.XDR.Format
 import Codec.Binary.XDR.Format.QQ
 import Data.Int
 import Language.XDR.TH (xdrToFmts)
-
--- Some convenient functions for use when playing with these things in GHCi:
-enc f d = runPut (putFmt f d)
-dec f d = runGet (getFmt f) d
-
 
 data Boolean
     = FALSE
