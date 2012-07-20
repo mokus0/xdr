@@ -1,8 +1,8 @@
-module Codec.Binary.XDR.Format.QQ (xdr) where
+module Codec.Binary.XDR.QQ (xdr) where
 
 import Language.Haskell.TH.Quote (QuasiQuoter(..))
 import Language.XDR (parseXDR, declaration, type_specifier)
-import Language.XDR.TH
+import Codec.Binary.XDR.TH
 import qualified Data.ByteString.Lazy.Char8 as BL
 
 -- |Very rudimentary quasiquoter for XDR formats.

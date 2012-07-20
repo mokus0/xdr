@@ -34,9 +34,9 @@ Library
                         Codec.Binary.XDR.Get
                         Codec.Binary.XDR.Put
                         Codec.Binary.XDR.Format
-                        Codec.Binary.XDR.Format.QQ
+                        Codec.Binary.XDR.TH
+                        Codec.Binary.XDR.QQ
                         Language.XDR
-                        Language.XDR.TH
 
   other-modules:        Language.XDR.Lexer
                         Language.XDR.ParseMonad

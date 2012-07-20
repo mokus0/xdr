@@ -1,5 +1,5 @@
 {-# LANGUAGE GADTs, TemplateHaskell #-}
-module Language.XDR.TH where
+module Codec.Binary.XDR.TH where
 
 import Codec.Binary.XDR.Format as Fmt
 import Language.XDR as Syn

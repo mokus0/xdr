@@ -24,9 +24,9 @@ module TH where
 import Data.Binary.Get (runGet)
 import Data.Binary.Put (runPut)
 import Codec.Binary.XDR.Format
-import Codec.Binary.XDR.Format.QQ
+import Codec.Binary.XDR.QQ
 import Data.Int
-import Language.XDR.TH (xdrToFmts)
+import Codec.Binary.XDR.TH (xdrToFmts)
 
 data Boolean
     = FALSE
