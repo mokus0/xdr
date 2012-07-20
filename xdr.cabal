@@ -48,7 +48,6 @@ Library
                         array,
                         binary, 
                         bytestring,
-                        bytestring-class,
                         containers,
                         data-binary-ieee754,
                         monad-loops,

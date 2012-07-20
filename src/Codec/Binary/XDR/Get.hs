@@ -6,7 +6,6 @@ import Data.Binary.IEEE754
 import Data.Bits
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy as BL
-import Data.ByteString.Class
 import Data.Int
 import Data.List
 import Data.Word
@@ -45,7 +44,7 @@ getFloat = getFloat32be
 getDouble :: Get Double
 getDouble = getFloat64be
 
-getFixedOpaque :: LazyByteString bs => Word32 -> Get bs
+getFixedOpaque :: Word32 -> Get BL.ByteString
 getFixedOpaque n = do
     bs <- getLazyByteString (fromIntegral n)
     
@@ -53,9 +52,9 @@ getFixedOpaque n = do
         0 -> return ()
         m -> skip (4-m)
     
-    return (fromLazyByteString bs)
+    return bs
 
-getVariableOpaque :: LazyByteString bs => Maybe Word32 -> Get bs
+getVariableOpaque :: Maybe Word32 -> Get BL.ByteString
 getVariableOpaque mbLim = do
     n <- getWord32be
     case mbLim of
@@ -67,9 +66,9 @@ getVariableOpaque mbLim = do
         0 -> return ()
         m -> skip (4-m)
     
-    return (fromLazyByteString bs)
+    return bs
 
-getString :: Maybe Word32 -> Get String
+getString :: Maybe Word32 -> Get BL.ByteString
 getString = getVariableOpaque
 
 getFixedArray :: Get a -> Word32 -> Get [a]

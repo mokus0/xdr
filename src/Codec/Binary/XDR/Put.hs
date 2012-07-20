@@ -5,7 +5,6 @@ import Data.Binary.IEEE754
 import Data.Bits
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy as BL
-import Data.ByteString.Class
 import Data.Int
 import Data.Word
 
@@ -45,8 +44,8 @@ putDouble = putFloat64be
 -- 1. I want to use one of the classes, so that either input is acceptable
 -- 2. Lazy is preferred because a no-copy conversion from strict to lazy is
 --    possible but not the other way.
-putFixedOpaque :: LazyByteString bs => Word32 -> bs -> Put
-putFixedOpaque n bs
+putFixedOpaque :: Word32 -> BL.ByteString -> Put
+putFixedOpaque n lbs
     | toInteger len /= toInteger n
         = fail "putFixedOpaque: supplied bytestring has incorrect length"
     | otherwise = do
@@ -55,11 +54,10 @@ putFixedOpaque n bs
             0 -> return ()
             m -> putByteString (BS.replicate (4-m) 0)
     where
-        lbs = toLazyByteString bs
         len = BL.length lbs
 
-putVariableOpaque :: LazyByteString bs => Maybe Word32 -> bs -> Put
-putVariableOpaque mbLen bs = case mbLen of
+putVariableOpaque :: Maybe Word32 -> BL.ByteString -> Put
+putVariableOpaque mbLen lbs = case mbLen of
     Just n | toInteger len > toInteger n
         -> fail "putVariableOpaque: supplied bytestring is too long"
     _   -> do
@@ -69,10 +67,9 @@ putVariableOpaque mbLen bs = case mbLen of
             0 -> return ()
             m -> putByteString (BS.replicate (4-m) 0)
     where 
-        lbs = toLazyByteString bs
         len = BL.length lbs
 
-putString :: Maybe Word32 -> String -> Put
+putString :: Maybe Word32 -> BL.ByteString -> Put
 putString = putVariableOpaque
 
 putFixedArray :: (a -> Put) -> Word32 -> [a] -> Put

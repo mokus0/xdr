@@ -5,7 +5,6 @@ import Codec.Binary.XDR.Format as Fmt
 import Language.XDR as Syn
 
 import Control.Monad
-import Data.ByteString.Class
 import qualified Data.ByteString.Lazy.Char8 as BL
 import Data.Char
 import qualified Data.Map as M
@@ -20,9 +19,12 @@ import Text.PrettyPrint.HughesPJClass
 -- do, come up with a better idea of what it _should_ do, and implement _that_
 -- from scratch.
 
-xdrToFmts :: LazyByteString s => s -> Q [Dec]
+importXDR :: FilePath -> Q [Dec]
+importXDR path = runIO (BL.readFile path) >>= xdrToFmts
+
+xdrToFmts :: BL.ByteString -> Q [Dec]
 xdrToFmts src = do
-    parsed <- either fail return (parseXDR xdr (toLazyByteString src))
+    parsed <- either fail return (parseXDR xdr src)
     xdrToHs emptyEnv simpleTHEnv parsed
 
 data THEnv t = THEnv
@@ -105,8 +107,9 @@ simpleTHEnv = THEnv
                 
     , declareConst  = \self env ident val -> do
         let decName = mkName (BL.unpack ident)
+        thSig <- sigD decName [t| Num a => a |]
         thDec <- valD (varP decName) (normalB val) []
-        return [thDec]
+        return [thSig, thDec]
     , getConst = \self env ident -> nameE (BL.unpack ident)
     , getType  = \self env ident -> nameE (BL.unpack ident)
     }

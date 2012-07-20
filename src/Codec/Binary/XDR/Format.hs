@@ -9,7 +9,7 @@ import Codec.Binary.XDR.Put
 
 import Control.Monad
 import Data.Binary
-import Data.ByteString.Class
+import Data.ByteString.Lazy
 import Data.Int
 import Data.Word
 
@@ -23,9 +23,9 @@ data Fmt a where
     UHyper  :: Fmt Word64
     Float   :: Fmt Float
     Double  :: Fmt Double
-    OpaqueF :: LazyByteString bs => Word32 -> Fmt bs
-    OpaqueV :: LazyByteString bs => Maybe Word32 -> Fmt bs
-    String  :: Maybe Word32 -> Fmt String
+    OpaqueF :: Word32 -> Fmt ByteString
+    OpaqueV :: Maybe Word32 -> Fmt ByteString
+    String  :: Maybe Word32 -> Fmt ByteString
     ArrayF  :: Fmt a -> Word32 -> Fmt [a]
     ArrayV  :: Fmt a -> Maybe Word32 -> Fmt [a]
     Maybe   :: Fmt a -> Fmt (Maybe a)
